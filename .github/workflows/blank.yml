@@ -9,8 +9,17 @@ jobs:
   deploy:
     runs-on: self-hosted
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@main
     #- uses: jakejarvis/s3-sync-action@master
     - name: Uploading to Deployment server
       run: rsync -zhrv ./* ubuntu@3.109.48.52:/home/ubuntu/
+
+
+ 
+    - run: |
+           aws s3 ls
+           ls
+           pwd
+           aws s3 cp index.html s3://githubbuck
+            
 
