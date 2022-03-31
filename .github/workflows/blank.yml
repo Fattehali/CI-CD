@@ -15,10 +15,11 @@ jobs:
       run: rsync -zhrv ./* ubuntu@3.109.48.52:/home/ubuntu/
     - run: |
        aws s3 sync . "$AWS_S3_BUCKET"
-       aws s3api put-object-acl --bucket "$AWS_S3_BUCKET" --key index.html --acl public-read
+       aws s3api put-object-acl --bucket "$S3_BUCKET" --key index.html --acl public-read
     env:
        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+       S3_BUCKET: ${{ secrets.S3_BUCKET }}
             
 
