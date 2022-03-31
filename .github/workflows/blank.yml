@@ -13,7 +13,8 @@ jobs:
     # - uses: jakejarvis/s3-sync-action@master
     - name: Uploading to Deployment server
       run: rsync -zhrv ./* ubuntu@3.109.48.52:/home/ubuntu/
-    - run: |
+    - name: Uploading to S3
+      run: |
        aws s3 sync . "$AWS_S3_BUCKET"
        aws s3api put-object-acl --bucket "$S3_BUCKET" --key index.html --acl public-read
     env:
